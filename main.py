@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import MNN
 import numpy as np
 
-FFT = 0
+FFT = 1
 ML = 1
 
 # AUDIO FILE PATH
@@ -36,6 +36,7 @@ if ML == 1:
 # MACHINE LEARNING
 f = open("ml list.txt", "w")
 if ML == 1:
+    loop = 3
     hidden_layer_list = [2, 4]
     node_num_list = [30, 100, 200, 300, 1000]
     avg_list = []
@@ -43,19 +44,19 @@ if ML == 1:
     max_list = []
     for hidden_layer in hidden_layer_list:
         for node_num in node_num_list:
-            accuracy_list = [0 for i in range(10)]
+            accuracy_list = [0 for i in range(loop)]
             print("----------%dx%d----------" % (node_num, hidden_layer))
             print("----------%dx%d----------" % (node_num, hidden_layer), file=f)
-            for i in range(10):
+            for i in range(loop):
                 accuracy = MNN.MNN_keras(data, label, hidden_layer, node_num)
                 accuracy_list[i] = accuracy
             for acc in accuracy_list:
                 print(acc)
             print("avg : ", end="")
             print("avg : ", end="", file=f)
-            print(sum(accuracy_list)/10)
-            print(sum(accuracy_list) / 10, file=f)
-            avg_list += [sum(accuracy_list)/10]
+            print(sum(accuracy_list)/loop)
+            print(sum(accuracy_list) / loop, file=f)
+            avg_list += [sum(accuracy_list)/loop]
             print("min : ", end="")
             print("min : ", end="", file=f)
             print(min(accuracy_list))
@@ -64,12 +65,12 @@ if ML == 1:
             print("max : ", end="", file=f)
             print(max(accuracy_list))
             print(max(accuracy_list), file=f)
-            min_list += min(accuracy_list)
-            max_list += max(accuracy_list)
+            min_list += [min(accuracy_list)]
+            max_list += [max(accuracy_list)]
 
     l_n = ["30x2", "100x2", "200x2", "300x2", "1000x2",
            "30x4", "100x4", "200x4", "300x4", "1000x4"]
-    y, min, max = accuracy_list, min_list, max_list
+    y, min, max = avg_list, min_list, max_list
     for i in range(len(y) - 1, 0, -1):
         for j in range(i):
             if y[j] > y[j + 1]:
@@ -94,7 +95,7 @@ if ML == 1:
         plt.text(x[i], y[i], str(y[i] * 1000 // 1 / 1000), fontsize=8)
         plt.text(x[i], 0.68, l_n[i], fontsize=7)
     plt.show()
-f.close()
+    f.close()
     #scikits_learn.scikits_learn(data, label)
     #print("[labeling]-----------------------\n0 : GG\n1 : MB\n2 : DG")
     #scikits_learn.scikits_learn(data, label)
