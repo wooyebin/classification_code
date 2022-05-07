@@ -88,6 +88,8 @@ def MNN_keras(data, label, hidden_layer, node_num):
     print("evaluation")
     evaluation = model.evaluate(X_test, y_test, batch_size=batch_size)
     print('Accuracy: ' + str(evaluation[1]))
+    model.save('beekeeping.h5')
+
     return evaluation[1]
 
 '''

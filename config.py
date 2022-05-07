@@ -1,5 +1,5 @@
 frequency = 1000
-slice_list = [0, 100, 100, 200, 450, 550]
+slice_list = [0, 100, 100, 150, 450, 550]
 num_list = [50, 50, 50]
 SR = 9600
 sec = 1

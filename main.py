@@ -9,6 +9,7 @@ import numpy as np
 
 FFT = 1
 ML = 1
+ML_TEST = 0
 
 # AUDIO FILE PATH
 audio_file_paths_GG = config.audio_file_paths_GG
@@ -33,9 +34,16 @@ if ML == 1:
     #data_GG, label_GG = scikits_learn.make_data_set(data_file_paths, "100")
     #data_MB, label_MB = scikits_learn.make_data_set(data_file_paths, "x10")
 
-# MACHINE LEARNING
-f = open("ml list.txt", "w")
 if ML == 1:
+    hidden_layer = 2
+    node_num = 100
+    accuracy = MNN.MNN_keras(data, label, hidden_layer, node_num)
+    print(accuracy)
+
+
+# MACHINE LEARNING TEST
+f = open("ml list.txt", "w")
+if ML_TEST == 1:
     loop = 3
     hidden_layer_list = [2, 4]
     node_num_list = [30, 100, 200, 300, 1000]
@@ -93,7 +101,7 @@ if ML == 1:
         plt.text(x[i], min[i], str(min[i] * 1000 // 1 / 1000), fontsize=7)
         plt.text(x[i], max[i], str(max[i] * 1000 // 1 / 1000), fontsize=7)
         plt.text(x[i], y[i], str(y[i] * 1000 // 1 / 1000), fontsize=8)
-        plt.text(x[i], 0.68, l_n[i], fontsize=7)
+        plt.text(x[i], 1.0, l_n[i], fontsize=7)
     plt.show()
     f.close()
     #scikits_learn.scikits_learn(data, label)

@@ -19,7 +19,7 @@ def make_samples(audio_file_paths, data_file):
             mag = np.abs(np.fft.fft(sig))
             size = len(mag) // sr
             sampling_1 = mag[size*slice_list[0]:size*slice_list[1]:2*size]
-            sampling_2 = mag[size*slice_list[2]:size*slice_list[3]:2*size]
+            sampling_2 = mag[size*slice_list[2]:size*slice_list[3]:size]
             sampling_3 = mag[size*slice_list[4]:size*slice_list[5]:2*size]
             sampling = np.hstack([sampling_1, sampling_2, sampling_3])
             data.write(','.join(str(_) for _ in sampling))
