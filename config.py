@@ -4,6 +4,8 @@ num_list = [50, 50, 50]
 SR = 9600
 sec = 1
 sec_window = 5
+DROPOUT = 0
+DROPMIN = 1
 
 # AUDIO FILE PATH
 audio_file_paths_GG = ["files/GG.wav",

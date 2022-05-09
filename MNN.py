@@ -8,6 +8,9 @@ from keras.layers import Dense, Dropout, Activation
 #from keras.optimizers import adam_v2
 #import torch
 #import torch.nn as nn
+import config
+
+DROPOUT = config.DROPOUT
 
 '''
 def MNN_torch(data, label):
@@ -71,7 +74,8 @@ def MNN_keras(data, label, hidden_layer, node_num):
     # Hidden Layer
     for i in range(hidden_layer):
         model.add(Dense(node_num, kernel_initializer='glorot_uniform', activation='relu'))
-        #model.add(Dropout(0.2))
+        if DROPOUT == 1:
+            model.add(Dropout(0.3))
 
     # Output Layer
     model.add(Dense(output_num, activation='softmax'))
