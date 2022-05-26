@@ -47,12 +47,9 @@ def MNN_torch(data, label):
 
 
 
-def MNN_keras(data, label, hidden_layer, node_num):
+def MNN_keras(data, label, input_node, node_num, hidden_layer, output_node, freq):
     # reference : https://iostream.tistory.com/111
     X_train, X_test, y_train, y_test = train_test_split(data, label, test_size=0.2, random_state=20)
-
-    input_num = len(X_train[0])
-    output_num = 3
 
     # np array
     X_train = np.array(X_train)
@@ -68,7 +65,7 @@ def MNN_keras(data, label, hidden_layer, node_num):
     model = Sequential()
 
     # Input Layer
-    model.add(Dense(node_num, input_dim=input_num, kernel_initializer='glorot_uniform', activation='relu'))
+    model.add(Dense(node_num, input_dim=input_node, kernel_initializer='glorot_uniform', activation='relu'))
     #model.add(Dropout(0.2))
 
     # Hidden Layer
@@ -78,7 +75,7 @@ def MNN_keras(data, label, hidden_layer, node_num):
             model.add(Dropout(0.3))
 
     # Output Layer
-    model.add(Dense(output_num, activation='softmax'))
+    model.add(Dense(output_node, activation='softmax'))
 
     # cost function & optimizer
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -92,7 +89,7 @@ def MNN_keras(data, label, hidden_layer, node_num):
     print("evaluation")
     evaluation = model.evaluate(X_test, y_test, batch_size=batch_size)
     print('Accuracy: ' + str(evaluation[1]))
-    model.save('beekeeping.h5')
+    model.save('beekeeping_%s_%d_%dx%d_%d.h5' % (freq, input_node, node_num, hidden_layer, output_node))
 
     return evaluation[1]
 

@@ -1,40 +1,33 @@
 frequency = 1000
 slice_list = [0, 100, 100, 150, 450, 550]
-num_list = [50, 50, 50]
+num_list = [50, 50, 100]
 SR = 9600
 sec = 1
 sec_window = 5
+
 DROPOUT = 0
-DROPMIN = 1
+DROPMIN = 0
+
+FFT = 1
+ML_DATASET = 1
+ML_STORE = 1
+ML_VIEW = 0
+ML_TEST = 0
+
+loop = 100
+
+input_node = sum(num_list)
+node_num = 200
+hidden_layer = 2
+output_node = 3
+
+
 
 # AUDIO FILE PATH
-audio_file_paths_GG = ["files/GG.wav",
-                       "files/GGulBul1.wav",
-                       "files/GG1.wav",
-                       "files/GGUL_1.wav",
-                       "files/GGUL_2.wav",
-                       "files/GGUL_3.wav",
-                       "files/GGUL_4.wav",
-                       "files/GGUL_5.wav",
-                       "files/GGUL_6.wav",
-                       "files/GGUL_7.wav",
-                       "files/GGUL_8.wav",
-                       "files/GGUL_9.wav"]
-audio_file_paths_MB = ["files/MB.wav",
-                       "files/MalBul1.wav",
-                       "files/MalBul2.wav",
-                       "files/MB1.wav",
-                       "files/MB2.wav",
-                       "files/MB3.wav"]
-audio_file_paths_DG = ["files/DG.wav",
-                       "files/DG1.wav",
-                       "files/DG2.wav",
-                       "files/DG3.wav",
-                       "files/DG3.wav",
-                       "files/DeungGum1.wav",
-                       "files/DeungGum2.wav",
-                       "files/DeungGum3.wav",
-                       "files/DeungGum4.wav"]
+audio_file_paths_GG = ["files/GGUL.wav",
+                       "files/GGUL2.wav"]
+audio_file_paths_MB = ["files/JS.wav"]
+audio_file_paths_DG = ["files/DG.wav"]
 
 print("[config]-------------------------")
 print("%15s : %d" % ("Sampling Rate", SR))
